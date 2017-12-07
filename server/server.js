@@ -1,3 +1,5 @@
+import newrelic from 'newrelic';
+
 import dotenv from 'dotenv';
 import express from 'express';
 import {graphqlExpress} from 'apollo-server-express';
@@ -12,7 +14,7 @@ import fs from 'fs';
 dotenv.config();
 const SPA_ROOT = resolve('../client/build');
 
-const GRAPHQL_PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 const DEV = process.env.NODE_ENV === 'development';
 
 const app = express();
@@ -37,7 +39,6 @@ app.use(
 // Make sure it can find the SPA
 const indexPath = resolve(SPA_ROOT, 'index.html');
 if (!DEV && indexPath) {
-  console.log(`SPA index at: ${indexPath}`);
   if (!fs.existsSync(indexPath)) {
     console.error("Can't find SPA static files. Exiting.");
     process.exit(1);
@@ -67,6 +68,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(GRAPHQL_PORT, () =>
-  console.log(`GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`)
-);
+app.listen(PORT, () => {
+  console.log(`Serving SPA from ${indexPath} on http://localhost:${PORT}/`);
+  console.log(`GraphQl is now running on http://localhost:${PORT}/graphql`);
+});
