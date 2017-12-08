@@ -1,24 +1,30 @@
-import newrelic from 'newrelic';
-
 import dotenv from 'dotenv';
 import express from 'express';
 import {graphqlExpress} from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import {formatError} from 'apollo-errors';
 import {authenticate} from './lib/authMiddleware.js';
+import compression from 'compression';
 import schema from './data/schema';
 import {isInstance as isGraphqlError} from 'apollo-errors';
 import {resolve} from 'path';
 import fs from 'fs';
 
 dotenv.config();
-const SPA_ROOT = resolve('../client/build');
 
 const PORT = process.env.PORT || 8080;
 const DEV = process.env.NODE_ENV === 'development';
 
+if (!DEV) {
+  require('newrelic');
+}
+
 const app = express();
 
+// Compress all requests.
+app.use(compression());
+
+// Add latency in development..
 if (process.env.NODE_ENV === 'development') {
   app.use((req, res, next) => {
     setTimeout(next, 500);
@@ -37,6 +43,7 @@ app.use(
 );
 
 // Make sure it can find the SPA
+const SPA_ROOT = resolve('../client/build');
 const indexPath = resolve(SPA_ROOT, 'index.html');
 if (!DEV && indexPath) {
   if (!fs.existsSync(indexPath)) {
