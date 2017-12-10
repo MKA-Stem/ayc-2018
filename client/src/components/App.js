@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Link, Route, Switch} from 'react-router-dom';
-import {withAuthInfo} from 'lib/auth/authContext.js';
 
 import './App.css';
 
-import DemoPage from 'pages/DemoPage.js';
+import MainPage from 'pages/MainPage.js';
+import TestPage from 'pages/TestPage.js';
 
 class App extends Component {
   render() {
@@ -13,20 +13,15 @@ class App extends Component {
         <div className="App_header">
           <div className="App_container">
             <span className="App_brand">
-              <Link to="/">ayc-starter</Link>
-            </span>
-            <button className="App_logout" onClick={() => this.props.auth.signOut()}>
-              Sign Out
-            </button>
-            <span className="App_logout">
-              {(this.props.auth.getInfo() || {}).email}
+              <Link to="/">NetTest</Link>
             </span>
           </div>
         </div>
 
         <div className="App_container">
           <Switch>
-            <Route exact path="/" component={DemoPage} />
+            <Route exact path="/" component={MainPage} />
+            <Route exact path="/test" component={TestPage} />
             <Route path="*" component={() => <h2>404: Not Found</h2>} />
           </Switch>
         </div>
@@ -35,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default withAuthInfo()(App);
+export default App;

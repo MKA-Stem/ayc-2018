@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import {graphqlExpress} from 'apollo-server-express';
+import {graphqlExpress, graphiqlExpress} from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import {formatError} from 'apollo-errors';
 import {authenticate} from './lib/authMiddleware.js';
@@ -9,6 +9,7 @@ import schema from './data/schema';
 import {isInstance as isGraphqlError} from 'apollo-errors';
 import {resolve} from 'path';
 import fs from 'fs';
+import morgan from 'morgan';
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ if (!DEV) {
 }
 
 const app = express();
+
+app.use(morgan('dev'));
 
 // Compress all requests.
 app.use(compression());
@@ -41,6 +44,8 @@ app.use(
     context: {user: req.user}
   }))
 );
+
+app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
 
 // Make sure it can find the SPA
 const SPA_ROOT = resolve('../client/build');
