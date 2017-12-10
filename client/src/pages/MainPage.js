@@ -18,6 +18,17 @@ const MainPage = ({history}) => (
       </div>
     </div>
     <div className="MainPage_container">
+      <h2>What is NetTest?</h2>
+      <p>
+        NetTest is a distributed latency testing service. We ping some of the most popular websites on
+        the internet and compare your results to a global average.
+      </p>
+      <p>
+        This score will give you a sense of where your internet service provider is throttling your connection. Plus,
+        if you don't like what you see, we will give you the information you need to contact your representatives in
+        congress so you can bring this to their attention.
+      </p>
+
       <h2>What is Net Neutrality?</h2>
 
       <p>
@@ -48,17 +59,6 @@ const MainPage = ({history}) => (
       <p>
         Imagine if you had to pay $20 extra to have “Youtube Priority Access”. And that without it, you are
         throttled into watching videos at a meager 240p.
-      </p>
-
-      <h2>What is NetTest?</h2>
-      <p>
-        NetTest is a distributed latency testing service. We ping some of the most popular websites on
-        the internet and compare your results to a global average.
-      </p>
-      <p>
-        This score will give you a sense of where your internet service provider is throttling your connection. Plus,
-        if you don't like what you see, we will give you the information you need to contact your representatives in
-        congress so you can bring this to their attention.
       </p>
     </div>
   </div>
