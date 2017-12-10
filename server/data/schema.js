@@ -4,27 +4,22 @@ import resolvers from './resolvers.js';
 
 const typeDefs = `
 
-scalar Datetime
-
 type Query {
-  # Attributes of the current API user
-  viewer: Viewer!
+  # Gets a specific set of tests
+  test(url:String): [Test]
 }
 
 type Mutation {
   # Sets the current user's message.
-  setMessage(message: String!): Viewer!
+  addTest(url: String!, isp: String, latencyAvg: Float): Test!
 }
 
-# Attributes of the user
-type Viewer {
-  # The id of the current user.
-  id: String!
-
-  # The user's message.
-  message: String
+type Test{
+  id ID!,
+  url: String!
+  isp: String
+  latencyAvg: Float!
 }
-
 
 `;
 
