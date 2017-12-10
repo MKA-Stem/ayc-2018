@@ -1,19 +1,28 @@
-export async function repInfo(latitude, longitude) {
+export async function repInfo(state) {
   const response = await fetch(
-    'https://openstates.org/api/v1/legislators/geo/?lat=' +
-      latitude +
-      '&long=' +
-      longitude +
-      '&apikey=cf0a3c81-4d18-4a7b-a8b7-db9d2a299094'
-  );
-  const reps = await response.json();
-  const result = {};
+    'https://api.propublica.org/congress/v1/members/senate/' +
+      state +
+      '/current.json'
+  , {mode:'cors', headers: {'X-API-Key':'HYJ3Bckf6gusHxa6eQAc7GPP875hlFALzRUeOsFs'}});
+  let reps = await response.json(); reps = reps.results;
+  const ids = [];
   for (let rep of reps) {
-    result[rep.chamber] = {
-      lastName: rep.last_name,
-      firstName: rep.first_name,
-      contact: rep.offices[0].phone ? rep.offices[0].phone : rep.offices[0].email
-    };
+    ids.push(rep.id);
   }
-  return result;
+
+  const results = [];
+  for (let id of ids) {
+    const senatorResponse = await fetch(
+      'https://api.propublica.org/congress/v1/members/' + id + '.json'
+    , {mode:'cors', headers: {'X-API-Key':'HYJ3Bckf6gusHxa6eQAc7GPP875hlFALzRUeOsFs'}});
+    let senatorInfo = await senatorResponse.json();
+    senatorInfo = senatorInfo.results[0];
+    
+    results.push({
+      firstName:senatorInfo.first_name,
+      lastName:senatorInfo.last_name,
+      contact:senatorInfo.roles[0].phone
+    });
+  }
+  return results;
 }

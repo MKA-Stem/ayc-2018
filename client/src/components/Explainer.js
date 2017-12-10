@@ -13,7 +13,7 @@ class Explainer extends React.Component {
 
   async componentDidMount() {
     const loc = await getISPLoc();
-    const info = await repInfo(loc.latitude, loc.longitude);
+    const info = await repInfo(loc.state);
     this.setState({repInfo: info});
   }
 
@@ -45,15 +45,15 @@ class Explainer extends React.Component {
           <div>
             <p>
               Your voice matters and we’ve made it easy for you to protect the internet. Contact
-              your local representatives below:
+              your senators below:
             </p>
             <p>
-              In your state's upper house, contact {reps.upper.firstName} {reps.upper.lastName} at{' '}
-              {reps.upper.contact}.
+              {reps[0].firstName} {reps[0].lastName} at{' '}
+              {reps[0].contact}
             </p>
             <p>
-              In your state's lower house, contact {reps.lower.firstName} {reps.lower.lastName} at{' '}
-              {reps.lower.contact}.
+              {reps[1].firstName} {reps[1].lastName} at{' '}
+              {reps[1].contact}
             </p>
           </div>
         )}
