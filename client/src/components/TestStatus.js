@@ -31,7 +31,8 @@ const TestStatus = ({url, result, avg}) => {
       ) : (
         <div className="TestStatus_latency">
           {formatted}
-          {percent > 0 ? ' faster' : ' slower'}
+          <span className="TestStatus_spd">{percent > 0 ? ' faster' : ' slower'}</span>
+          <span className="TestStatus_than">than average</span>
         </div>
       )}
     </div>
