@@ -4,11 +4,20 @@ const resolvers = {
   Query: {
     async tests(root, args, ctx) {
       // args: {id, url, isp}
-      console.log(args)
       const tests = await db('tests')
         .where(args)
         .select('*')
       return tests;
+    },
+    async average(root, args, ctx) {
+      // args: {url}
+      const query = await db.raw(
+        `SELECT AVG(latencyavg) as latencyavg, url FROM tests WHERE url=:url GROUP BY url;`,
+        {url: args.url}
+      );
+      const result = query.rows[0];
+      console.log(result);
+      return result;
     }
   },
 
