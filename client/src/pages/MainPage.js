@@ -14,6 +14,7 @@ const MainPage = ({history}) => (
             See My Speeds
           </Button>
           <div class="scroll-down"></div>
+          <div class="scroll-text">Scroll For More Info</div>
         </div>
       </div>
     </div>
