@@ -8,11 +8,12 @@ const MainPage = ({history}) => (
   <div className="MainPage">
     <div className="MainPage_hero-container">
       <div className="MainPage_container">
-        <div>
+        <div class="heroText">
           <h1 className="MainPage_hero">NetTest</h1>
           <Button lg light onClick={() => history.push('/test')}>
             See My Speeds
           </Button>
+          <div class="scroll-down"></div>
         </div>
       </div>
     </div>
