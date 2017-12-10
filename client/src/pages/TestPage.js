@@ -6,6 +6,7 @@ import urls from 'lib/urls.js';
 
 import {testLatency, getAvgLatency} from 'lib/latencyTest.js';
 import TestStatus from 'components/TestStatus.js';
+import Explainer from 'components/Explainer.js';
 import client from 'lib/client.js';
 import gql from 'graphql-tag';
 
@@ -26,7 +27,7 @@ const submitMutation = gql`
   }
 `;
 
-const TEST_REPEAT = 5;
+const TEST_REPEAT = 1;
 
 window.testLatency = testLatency;
 window.getAvgLatency = getAvgLatency;
@@ -56,6 +57,7 @@ class TestPage extends React.Component {
       console.log('Starting test');
       const latency = await getAvgLatency(test.url, TEST_REPEAT);
       test.result = latency;
+      test.ratio = latency / test.avg;
 
       // Submit average
       console.log('Submitting average');
@@ -96,9 +98,10 @@ class TestPage extends React.Component {
           <div>
             <h1>Test Results</h1>
             <details>
-              <summary className="TestPage_summary">Site Speeds</summary>
+              <summary className="TestPage_summary">View Full Results</summary>
               <ResultsList tests={this.state.tests} />
             </details>
+            <Explainer tests={this.state.tests} />
           </div>
         )}
       </NavWrapper>
