@@ -1,10 +1,30 @@
 .TestStatus {
-  height: 50px;
-  line-height: 50px;
+  line-height: 30px;
   display: flex;
-  border-bottom: 1px solid var(--color-shade);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.TestStatus_color- {
+}
+
+.TestStatus_color-red {
+  color: white;
+  background-color: #f39c12;
+}
+
+.TestStatus_color-green {
+  color: white;
+  background-color: #2ecc71;
 }
 
 .TestStatus_url {
   flex: 1;
+  font-size: 20px;
+}
+
+.TestStatus_latency {
+  font-size: 20px;
 }
