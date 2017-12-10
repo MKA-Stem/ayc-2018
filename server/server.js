@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(
   '/graphql',
   bodyParser.json(),
-  authenticate(process.env.OAUTH_CLIENT_ID),
+  // authenticate(process.env.OAUTH_CLIENT_ID), // removed, we don't need this
   graphqlExpress(req => ({
     schema,
     formatError,

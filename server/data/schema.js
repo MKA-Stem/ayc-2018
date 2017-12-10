@@ -6,18 +6,26 @@ const typeDefs = `
 
 type Query {
   # Gets a specific set of tests
-  test(url:String): [Test]
+  tests(id: String, url:String, isp: String): [Test]
 }
 
 type Mutation {
-  # Sets the current user's message.
+  # Adds a test to the database
   addTest(url: String!, isp: String, latencyAvg: Float): Test!
 }
 
 type Test{
-  id ID!,
+
+  # Database ID of the test
+  id: ID!
+
+  # URL being tested.
   url: String!
+
+  # Something representing the ISP of the tester
   isp: String
+
+  # Average latency to website, in ms
   latencyAvg: Float!
 }
 
