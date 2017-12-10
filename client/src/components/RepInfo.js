@@ -1,3 +1,5 @@
+import React from 'react';
+
 export class RepInfo extends React.Component {
   callApi(latitude, longitude){
     fetch('https://openstates.org/api/v1/legislators/geo/?lat='+latitude+'&long='+longitude)
