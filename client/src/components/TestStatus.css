@@ -1,6 +1,5 @@
 .TestStatus {
   line-height: 30px;
-  height: 50px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
