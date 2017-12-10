@@ -10,6 +10,8 @@ body {
 }
 
 :root {
+  --color-primary: #3498db;
   --color-dark: #222;
+  --color-light: white;
   --color-shade: #888;
 }

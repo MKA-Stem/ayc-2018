@@ -1,0 +1,23 @@
+.MainPage {
+}
+
+.MainPage_container {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.MainPage_hero-container {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 400px;
+  background-color: var(--color-primary);
+}
+
+.MainPage_hero {
+  font-size: 70px;
+  color: white;
+  margin-bottom: 20px;
+}
