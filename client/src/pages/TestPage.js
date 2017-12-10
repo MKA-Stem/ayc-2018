@@ -27,7 +27,7 @@ const submitMutation = gql`
   }
 `;
 
-const TEST_REPEAT = 1;
+const TEST_REPEAT = 5;
 
 window.testLatency = testLatency;
 window.getAvgLatency = getAvgLatency;
