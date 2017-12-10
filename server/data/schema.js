@@ -6,12 +6,12 @@ const typeDefs = `
 
 type Query {
   # Gets a specific set of tests
-  tests(id: String, url:String, isp: String): [Test]
+  tests(id: String, url:String, isp: String, latencyavg: Float): [Test]
 }
 
 type Mutation {
   # Adds a test to the database
-  addTest(url: String!, isp: String, latencyAvg: Float): Test!
+  addTest(url: String!, isp: String, latencyavg: Float): Test!
 }
 
 type Test{
@@ -26,7 +26,7 @@ type Test{
   isp: String
 
   # Average latency to website, in ms
-  latencyAvg: Float!
+  latencyavg: Float!
 }
 
 `;
