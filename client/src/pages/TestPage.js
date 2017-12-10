@@ -1,4 +1,5 @@
 import React from 'react';
+import './TestPage.css';
 import NavWrapper from 'components/NavWrapper.js';
 
 import urls from 'lib/urls.js';
@@ -78,12 +79,28 @@ class TestPage extends React.Component {
   }
 
   render() {
+    const ResultsList = ({tests}) =>
+      this.state.tests.map(e => (
+        <TestStatus key={e.url} url={e.url} result={e.result} avg={e.avg} />
+      ));
+
     return (
       <NavWrapper>
-        {this.state.done ? <h1>Test Results</h1> : <h1>Running Tests...</h1>}
-        {this.state.tests.map(e => (
-          <TestStatus key={e.url} url={e.url} result={e.result} avg={e.avg} />
-        ))}
+        {!this.state.done && (
+          <div>
+            <h1>Running tests...</h1>
+            <ResultsList tests={this.state.tests} />
+          </div>
+        )}
+        {this.state.done && (
+          <div>
+            <h1>Test Results</h1>
+            <details>
+              <summary className="TestPage_summary">Site Speeds</summary>
+              <ResultsList tests={this.state.tests} />
+            </details>
+          </div>
+        )}
       </NavWrapper>
     );
   }
