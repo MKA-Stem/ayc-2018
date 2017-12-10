@@ -17,12 +17,12 @@ const MainPage = ({history}) => (
       </div>
     </div>
     <div className="MainPage_container">
-      <h2>What is NetTest?</h2>
+      <h2>What is Net Neutrality?</h2>
 
       <p>
         Net Neutrality, “the idea, principle, or requirement that Internet service providers should
         or must treat all Internet data as the same regardless of its kind, source, or destination”
-        (Merriam -Webster), is under attack.
+        (Merriam-Webster), is under attack.
       </p>
       <p>
         The FCC, headed by Ajit Pai, is holding a vote Thursday, December 14th on whether or not to
@@ -45,7 +45,7 @@ const MainPage = ({history}) => (
         because they have been paid to favor Hulu.
       </p>
       <p>
-        Imagine if you had to pay 20$ extra to have “Youtube Priority Access”. Without it, you are
+        Imagine if you had to pay $20 extra to have “Youtube Priority Access”. And that without it, you are
         throttled into watching videos at a meager 240p.
       </p>
     </div>
