@@ -44,11 +44,11 @@ const MainPage = ({history}) => (
       </p>
       <p>
         Ajit Pai, along with proponents of the Title II repeal, argue that this protection limits
-        infrastructure investment, citing a “1 billion dollar drop in infrastructure investment”.
+        infrastructure investment, citing a “1 billion dollar drop in infrastructure investment.”
       </p>
       <p>
         With Net Neutrality, all traffic has equal treatment, regardless of source or destination.
-        All traffic is in “the same lane”.
+        All traffic is in “the same lane.”
       </p>
       <p>
         Without Net Neutrality, ISPs can give preferential treatment towards certain traffic. For
@@ -58,7 +58,7 @@ const MainPage = ({history}) => (
         because they have been paid to favor Hulu.
       </p>
       <p>
-        Imagine if you had to pay $20 extra to have “Youtube Priority Access”. And that without it,
+        Imagine if you had to pay $20 extra to have “Youtube Priority Access.” And that without it,
         you are throttled into watching videos at a meager 240p.
       </p>
     </div>
