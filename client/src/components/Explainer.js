@@ -22,7 +22,7 @@ class Explainer extends React.Component {
     let {tests} = this.props;
 
     tests = [...tests];
-    tests = tests.sort((a, b) => a.ratio - b.ratio);
+    tests = tests.filter(e => !e.err).sort((a, b) => a.ratio - b.ratio);
 
     const worst = tests[tests.length - 1];
     const best = tests[0];
@@ -48,12 +48,10 @@ class Explainer extends React.Component {
               your senators below:
             </p>
             <p>
-              {reps[0].firstName} {reps[0].lastName} at{' '}
-              {reps[0].contact}
+              {reps[0].firstName} {reps[0].lastName} at {reps[0].contact}
             </p>
             <p>
-              {reps[1].firstName} {reps[1].lastName} at{' '}
-              {reps[1].contact}
+              {reps[1].firstName} {reps[1].lastName} at {reps[1].contact}
             </p>
           </div>
         )}

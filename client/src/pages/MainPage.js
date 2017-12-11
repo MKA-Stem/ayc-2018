@@ -8,26 +8,26 @@ const MainPage = ({history}) => (
   <div className="MainPage">
     <div className="MainPage_hero-container">
       <div className="MainPage_container">
-        <div class="heroText">
+        <div className="heroText">
           <h1 className="MainPage_hero">NetTest</h1>
           <Button lg light onClick={() => history.push('/test')}>
             See My Speeds
           </Button>
-          <div class="scroll-down"></div>
-          <div class="scroll-text">Scroll For More Info</div>
+          <div className="scroll-down" />
+          <div className="scroll-text">Scroll For More Info</div>
         </div>
       </div>
     </div>
     <div className="MainPage_container">
       <h2>What is NetTest?</h2>
       <p>
-        NetTest is a distributed latency testing service. We ping some of the most popular websites on
-        the internet and compare your results to a global average.
+        NetTest is a distributed latency testing service. We ping some of the most popular websites
+        on the internet and compare your results to a global average.
       </p>
       <p>
-        This score will give you a sense of where your internet service provider is throttling your connection. Plus,
-        if you don't like what you see, we will give you the information you need to contact your representatives in
-        congress so you can bring this to their attention.
+        This score will give you a sense of where your internet service provider is throttling your
+        connection. Plus, if you don't like what you see, we will give you the information you need
+        to contact your representatives in congress so you can bring this to their attention.
       </p>
 
       <h2>What is Net Neutrality?</h2>
@@ -58,8 +58,8 @@ const MainPage = ({history}) => (
         because they have been paid to favor Hulu.
       </p>
       <p>
-        Imagine if you had to pay $20 extra to have “Youtube Priority Access”. And that without it, you are
-        throttled into watching videos at a meager 240p.
+        Imagine if you had to pay $20 extra to have “Youtube Priority Access”. And that without it,
+        you are throttled into watching videos at a meager 240p.
       </p>
     </div>
   </div>

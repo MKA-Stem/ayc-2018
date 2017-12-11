@@ -56,6 +56,9 @@ class TestPage extends React.Component {
       // Run tests
       console.log('Starting test');
       const latency = await getAvgLatency(test.url, TEST_REPEAT);
+      if (latency == null) {
+        test.err = true;
+      }
       test.result = latency;
       test.ratio = latency / test.avg;
 
@@ -83,7 +86,7 @@ class TestPage extends React.Component {
   render() {
     const ResultsList = ({tests}) =>
       this.state.tests.map(e => (
-        <TestStatus key={e.url} url={e.url} result={e.result} avg={e.avg} />
+        <TestStatus key={e.url} err={e.err} url={e.url} result={e.result} avg={e.avg} />
       ));
 
     return (
