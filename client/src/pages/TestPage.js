@@ -20,9 +20,11 @@ const getAvgQuery = gql`
 `;
 
 const submitMutation = gql`
-  mutation($url: String!, $isp: String!, $latency: Float) {
+  mutation($url: String!, $isp: String!, $latency: Float!) {
     addTest(url: $url, isp: $isp, latencyavg: $latency) {
       id
+      url
+      latencyavg
     }
   }
 `;
@@ -49,29 +51,29 @@ class TestPage extends React.Component {
       // Get the average
       console.group('Testing ' + test.url);
 
-      console.log('Fetching average');
-      const result = await client.query({query: getAvgQuery, variables: {url: test.url}});
-      test.avg = result.data.average.latencyavg || null;
+      try {
+        // Run tests
+        console.log('Starting test');
+        const latency = await getAvgLatency(test.url, TEST_REPEAT);
+        test.result = latency;
 
-      // Run tests
-      console.log('Starting test');
-      const latency = await getAvgLatency(test.url, TEST_REPEAT);
-      if (latency == null) {
+        // Submit average
+        console.log('Submitting average');
+        const mut = await client.mutate({
+          mutation: submitMutation,
+          variables: {
+            url: test.url,
+            isp: 'TestISP',
+            latency: test.result
+          }
+        });
+
+        test.avg = mut.data.addTest.latencyavg;
+        test.ratio = latency / test.avg;
+      } catch (e) {
+        console.log(e);
         test.err = true;
       }
-      test.result = latency;
-      test.ratio = latency / test.avg;
-
-      // Submit average
-      console.log('Submitting average');
-      await client.mutate({
-        mutation: submitMutation,
-        variables: {
-          url: test.url,
-          isp: 'TestISP',
-          latency: test.result
-        }
-      });
 
       // Update UI
       let tests = [...this.state.tests];
