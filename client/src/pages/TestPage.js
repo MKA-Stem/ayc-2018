@@ -10,15 +10,6 @@ import Explainer from 'components/Explainer.js';
 import client from 'lib/client.js';
 import gql from 'graphql-tag';
 
-const getAvgQuery = gql`
-  query($url: String!) {
-    average(url: $url) {
-      url
-      latencyavg
-    }
-  }
-`;
-
 const submitMutation = gql`
   mutation($url: String!, $isp: String!, $latency: Float!) {
     addTest(url: $url, isp: $isp, latencyavg: $latency) {
