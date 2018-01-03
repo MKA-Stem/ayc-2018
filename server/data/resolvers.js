@@ -1,4 +1,5 @@
 import db from './db.js';
+import fetch from 'node-fetch';
 
 const resolvers = {
   Query: {
@@ -25,6 +26,48 @@ const resolvers = {
           latencyavg: result.total / result.num
         };
       }
+    },
+
+    async senatorsForRequestIP(root, args, ctx) {
+
+      const ipResponse = await fetch('http://ip-api.com/json/' + ctx.ip);
+      const ans = await ipResponse.json();
+
+      const senResponse = await fetch(
+        "https://api.propublica.org/congress/v1/members/senate/" +
+          ans.region +
+          "/current.json",
+        {
+          mode: "cors",
+          headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY }
+        }
+      );
+      let reps = await senResponse.json();
+      reps = reps.results;
+      const ids = [];
+      for (let rep of reps) {
+        ids.push(rep.id);
+      }
+    
+      const results = [];
+      for (let id of ids) {
+        const specSenResponse = await fetch(
+          "https://api.propublica.org/congress/v1/members/" + id + ".json",
+          {
+            mode: "cors",
+            headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY }
+          }
+        );
+        let senatorInfo = await specSenResponse.json();
+        senatorInfo = senatorInfo.results[0];
+    
+        results.push({
+          firstname: senatorInfo.first_name,
+          lastname: senatorInfo.last_name,
+          contact: senatorInfo.roles[0].phone
+        });
+      }
+      return results;
     }
   },
 

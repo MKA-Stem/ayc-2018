@@ -7,6 +7,9 @@ const typeDefs = `
 type Query {
   # Get the average latency for a URL
   average(url:String): Test
+
+  # Get the senators 
+  senatorsForRequestIP: [Senator]!
 }
 
 type Mutation {
@@ -27,6 +30,18 @@ type Test{
 
   # Average latency to website, in ms
   latencyavg: Float!
+}
+
+type Senator{
+
+  # Firstname of Senator
+  firstname: String!
+
+  # Lastname of Senator
+  lastname: String!
+
+  # Contact, as in telephone
+  contact: String!
 }
 
 `;
