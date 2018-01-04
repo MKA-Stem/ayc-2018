@@ -2,8 +2,7 @@ import React from 'react';
 import TestStatus from 'components/TestStatus.js';
 import './Explainer.css';
 
-import {repInfo} from 'lib/repInfo.js';
-import {getISPLoc} from 'lib/getISPLoc.js';
+import SenatorInfo from 'components/SenatorInfo.js';
 
 class Explainer extends React.Component {
   constructor(props) {
@@ -11,14 +10,7 @@ class Explainer extends React.Component {
     this.state = {repInfo: null};
   }
 
-  async componentDidMount() {
-    const loc = await getISPLoc();
-    const info = await repInfo(loc.state);
-    this.setState({repInfo: info});
-  }
-
   render() {
-    const reps = this.state.repInfo;
     let {tests} = this.props;
 
     tests = [...tests];
@@ -41,20 +33,7 @@ class Explainer extends React.Component {
           internet traffic. While it seems we are fighting an uphill battle against millions of
           dollars of lobbying in Congress, the solution is activism.
         </p>
-        {reps && (
-          <div>
-            <p>
-              Your voice matters and we’ve made it easy for you to protect the internet. Contact
-              your senators below:
-            </p>
-            <p>
-              {reps[0].firstName} {reps[0].lastName} at {reps[0].contact}
-            </p>
-            <p>
-              {reps[1].firstName} {reps[1].lastName} at {reps[1].contact}
-            </p>
-          </div>
-        )}
+        <SenatorInfo />
       </div>
     );
   }
