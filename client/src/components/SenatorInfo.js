@@ -3,7 +3,6 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
 const SenatorInfo = ({ data }) => {
-    console.log(data)
     const senators = data.senatorsForRequestIP;
     return (
         senators ? (

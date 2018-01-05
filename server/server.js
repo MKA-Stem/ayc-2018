@@ -41,7 +41,7 @@ app.use(
   graphqlExpress(req => ({
     schema,
     formatError,
-    context: {user: req.user, ip: process.env.NODE_ENV = "development" ? "71.172.161.2" : req.ip}
+    context: {user: req.user, ip: process.env.NODE_ENV == "development" ? "71.172.161.2" : req.ip}
   }))
 );
 
